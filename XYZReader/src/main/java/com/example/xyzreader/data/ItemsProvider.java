@@ -14,6 +14,7 @@ import android.net.Uri;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemsProvider extends ContentProvider {
 	private SQLiteOpenHelper mOpenHelper;
@@ -60,7 +61,7 @@ public class ItemsProvider extends ContentProvider {
 		final SelectionBuilder builder = buildSelection(uri);
 		Cursor cursor = builder.where(selection, selectionArgs).query(db, projection, sortOrder);
         if (cursor != null) {
-            cursor.setNotificationUri(getContext().getContentResolver(), uri);
+            cursor.setNotificationUri(Objects.requireNonNull(getContext()).getContentResolver(), uri);
         }
         return cursor;
 	}
@@ -69,23 +70,19 @@ public class ItemsProvider extends ContentProvider {
 	public Uri insert(Uri uri, ContentValues values) {
 		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		final int match = sUriMatcher.match(uri);
-		switch (match) {
-			case ITEMS: {
-				final long _id = db.insertOrThrow(Tables.ITEMS, null, values);
-                getContext().getContentResolver().notifyChange(uri, null);
-				return ItemsContract.Items.buildItemUri(_id);
-			}
-			default: {
-				throw new UnsupportedOperationException("Unknown uri: " + uri);
-			}
-		}
-	}
+        if (match == ITEMS) {
+            final long _id = db.insertOrThrow(Tables.ITEMS, null, values);
+            Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
+            return ItemsContract.Items.buildItemUri(_id);
+        }
+        throw new UnsupportedOperationException("Unknown uri: " + uri);
+    }
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		final SelectionBuilder builder = buildSelection(uri);
-        getContext().getContentResolver().notifyChange(uri, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
 		return builder.where(selection, selectionArgs).update(db, values);
 	}
 
@@ -93,7 +90,7 @@ public class ItemsProvider extends ContentProvider {
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		final SelectionBuilder builder = buildSelection(uri);
-        getContext().getContentResolver().notifyChange(uri, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
 		return builder.where(selection, selectionArgs).delete(db);
 	}
 
