@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.support:support-core-utils:27.1.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../google-cloud-sdk/caches/transforms-2/files-2.1/e7ac5db3898828a86c9f832eb1a88389/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../google-cloud-sdk/caches/transforms-2/files-2.1/e7ac5db3898828a86c9f832eb1a88389/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../google-cloud-sdk/caches/modules-2/files-2.1/com.android.support/support-core-utils/27.1.1/8fb37fd2f8dbc23482865700d2c340ae030ea561/support-core-utils-27.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
