@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -27,12 +26,8 @@ public class ArticleDetailActivity extends AppCompatActivity
     private Cursor mCursor;
     private long mStartId;
 
-    private int mSelectedItemUpButtonFloor = Integer.MAX_VALUE;
-    private int mTopInset = 0;
-
     private ViewPager mPager;
     private MyPagerAdapter mPagerAdapter;
-    private View mUpButton;
 
     public ArticleDetailActivity() {
     }

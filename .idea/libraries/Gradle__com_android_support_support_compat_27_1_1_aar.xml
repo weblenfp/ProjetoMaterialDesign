@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-compat:27.1.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3bd3b817f3749a8a1ea029530e61b8f5/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3bd3b817f3749a8a1ea029530e61b8f5/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../google-cloud-sdk/caches/transforms-2/files-2.1/1ea8c463f8c18fff78e4d5ec4cc653c7/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../../google-cloud-sdk/caches/transforms-2/files-2.1/1ea8c463f8c18fff78e4d5ec4cc653c7/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-compat/27.1.1/fe233277b6eae25ce5b2afab6daf55d73c86f0b9/support-compat-27.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../google-cloud-sdk/caches/modules-2/files-2.1/com.android.support/support-compat/27.1.1/fe233277b6eae25ce5b2afab6daf55d73c86f0b9/support-compat-27.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
