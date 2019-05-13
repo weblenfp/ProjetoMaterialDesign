@@ -31,7 +31,7 @@ public class RemoteEndpointUtil {
         // Parse JSON
         try {
             JSONTokener tokener = new JSONTokener(itemsJson);
-            Object val = tokener.nextValue();
+            Object      val     = tokener.nextValue();
             if (!(val instanceof JSONArray)) {
                 throw new JSONException("Expected JSONArray");
             }

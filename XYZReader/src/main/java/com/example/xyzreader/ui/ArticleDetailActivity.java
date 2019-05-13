@@ -24,9 +24,9 @@ public class ArticleDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Cursor mCursor;
-    private long mStartId;
+    private long   mStartId;
 
-    private ViewPager mPager;
+    private ViewPager      mPager;
     private MyPagerAdapter mPagerAdapter;
 
     public ArticleDetailActivity() {

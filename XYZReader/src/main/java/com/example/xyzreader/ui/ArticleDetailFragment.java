@@ -44,27 +44,23 @@ public class ArticleDetailFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "ArticleDetailFragment";
 
-    private static final String ARG_ITEM_ID = "item_id";
-    private static final float PARALLAX_FACTOR = 1.25f;
-
-    private Cursor mCursor;
-    private long mItemId;
-    private View mRootView;
-    private int mMutedColor = 0xFF333333;
-
-    private View mPhotoContainerView;
-    private ImageView mPhotoView;
-    private int mScrollY;
-    private boolean mIsCard = false;
-
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
+    private static final String                  ARG_ITEM_ID     = "item_id";
+    private static final float                   PARALLAX_FACTOR = 1.25f;
+    private final        SimpleDateFormat        dateFormat      = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
     // Use default locale format
-    private final SimpleDateFormat outputFormat = new SimpleDateFormat();
+    private final        SimpleDateFormat        outputFormat    = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
-    private final GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
-
-    private Toolbar toolbar;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
+    private final        GregorianCalendar       START_OF_EPOCH  = new GregorianCalendar(2, 1, 1);
+    private              Cursor                  mCursor;
+    private              long                    mItemId;
+    private              View                    mRootView;
+    private              int                     mMutedColor     = 0xFF333333;
+    private              View                    mPhotoContainerView;
+    private              ImageView               mPhotoView;
+    private              int                     mScrollY;
+    private              boolean                 mIsCard         = false;
+    private              Toolbar                 toolbar;
+    private              CollapsingToolbarLayout collapsingToolbarLayout;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -79,6 +75,20 @@ public class ArticleDetailFragment extends Fragment implements
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
+    }
+
+    static float progress(float v, float min, float max) {
+        return constrain((v - min) / (max - min));
+    }
+
+    private static float constrain(float val) {
+        if (val < (float) 0) {
+            return (float) 0;
+        } else if (val > (float) 1) {
+            return (float) 1;
+        } else {
+            return val;
+        }
     }
 
     @Override
@@ -130,20 +140,6 @@ public class ArticleDetailFragment extends Fragment implements
         return mRootView;
     }
 
-    static float progress(float v, float min, float max) {
-        return constrain((v - min) / (max - min));
-    }
-
-    private static float constrain(float val) {
-        if (val < (float) 0) {
-            return (float) 0;
-        } else if (val > (float) 1) {
-            return (float) 1;
-        } else {
-            return val;
-        }
-    }
-
     private Date parsePublishedDate() {
         try {
             String date = mCursor.getString(ArticleLoader.Query.PUBLISHED_DATE);
@@ -160,7 +156,7 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-        TextView titleView = mRootView.findViewById(R.id.article_title);
+        TextView titleView  = mRootView.findViewById(R.id.article_title);
         TextView bylineView = mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = mRootView.findViewById(R.id.article_body);

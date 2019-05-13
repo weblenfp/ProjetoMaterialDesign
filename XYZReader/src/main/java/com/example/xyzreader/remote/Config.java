@@ -6,13 +6,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 class Config {
-    public static final URL BASE_URL;
+    public static final  URL    BASE_URL;
     private static final String TAG = Config.class.toString();
 
     static {
         URL url = null;
         try {
-            url = new URL("https://nspf.github.io/XYZReader/data.json" );
+            url = new URL("https://nspf.github.io/XYZReader/data.json");
         } catch (MalformedURLException ignored) {
             // TODO: throw a real error
             Log.e(TAG, "Please check your internet connection.");
