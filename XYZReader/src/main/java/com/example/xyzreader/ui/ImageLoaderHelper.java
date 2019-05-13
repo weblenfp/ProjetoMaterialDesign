@@ -9,18 +9,9 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 public class ImageLoaderHelper {
-    private static ImageLoaderHelper sInstance;
-
-    public static ImageLoaderHelper getInstance(Context context) {
-        if (sInstance == null) {
-            sInstance = new ImageLoaderHelper(context.getApplicationContext());
-        }
-
-        return sInstance;
-    }
-
-    private final LruCache<String, Bitmap> mImageCache = new LruCache<String, Bitmap>(20);
-    private ImageLoader mImageLoader;
+    private static ImageLoaderHelper        sInstance;
+    private final  LruCache<String, Bitmap> mImageCache = new LruCache<>(20);
+    private final  ImageLoader              mImageLoader;
 
     private ImageLoaderHelper(Context applicationContext) {
         RequestQueue queue = Volley.newRequestQueue(applicationContext);
@@ -36,6 +27,14 @@ public class ImageLoaderHelper {
             }
         };
         mImageLoader = new ImageLoader(queue, imageCache);
+    }
+
+    public static ImageLoaderHelper getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new ImageLoaderHelper(context.getApplicationContext());
+        }
+
+        return sInstance;
     }
 
     public ImageLoader getImageLoader() {

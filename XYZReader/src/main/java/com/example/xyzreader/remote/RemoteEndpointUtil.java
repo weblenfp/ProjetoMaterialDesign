@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import java.io.IOException;
-import java.net.URL;
+import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -20,9 +20,9 @@ public class RemoteEndpointUtil {
     }
 
     public static JSONArray fetchJsonArray() {
-        String itemsJson = null;
+        String itemsJson;
         try {
-            itemsJson = fetchPlainText(Config.BASE_URL);
+            itemsJson = fetchPlainText();
         } catch (IOException e) {
             Log.e(TAG, "Error fetching items JSON", e);
             return null;
@@ -31,7 +31,7 @@ public class RemoteEndpointUtil {
         // Parse JSON
         try {
             JSONTokener tokener = new JSONTokener(itemsJson);
-            Object val = tokener.nextValue();
+            Object      val     = tokener.nextValue();
             if (!(val instanceof JSONArray)) {
                 throw new JSONException("Expected JSONArray");
             }
@@ -43,14 +43,14 @@ public class RemoteEndpointUtil {
         return null;
     }
 
-    static String fetchPlainText(URL url) throws IOException {
+    private static String fetchPlainText() throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url(url)
+                .url(Config.BASE_URL)
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        return Objects.requireNonNull(response.body()).string();
     }
 }

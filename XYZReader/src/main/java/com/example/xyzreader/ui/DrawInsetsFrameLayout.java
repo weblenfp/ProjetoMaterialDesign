@@ -30,14 +30,10 @@ import com.example.xyzreader.R;
 
 
 public class DrawInsetsFrameLayout extends FrameLayout {
-    private Drawable mInsetBackground;
-    private Drawable mTopInsetBackground;
-    private Drawable mBottomInsetBackground;
-    private Drawable mSideInsetBackground;
-
-    private Rect mInsets;
-    private Rect mTempRect = new Rect();
-    private OnInsetsCallback mOnInsetsCallback;
+    private final Rect             mTempRect = new Rect();
+    private       Drawable         mInsetBackground;
+    private       Rect             mInsets;
+    private       OnInsetsCallback mOnInsetsCallback;
 
     public DrawInsetsFrameLayout(Context context) {
         super(context);
@@ -119,7 +115,7 @@ public class DrawInsetsFrameLayout extends FrameLayout {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        int width = getWidth();
+        int width  = getWidth();
         int height = getHeight();
 
         if (mInsets != null) {
@@ -153,7 +149,7 @@ public class DrawInsetsFrameLayout extends FrameLayout {
         }
     }
 
-    public static interface OnInsetsCallback {
-        public void onInsetsChanged(Rect insets);
+    interface OnInsetsCallback {
+        void onInsetsChanged(Rect insets);
     }
 }
